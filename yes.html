@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hehe! ❤️</title>
+    <style>
+        /* 保持与第一页一致的底色 */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fce4ec; /* 低饱和浅粉色 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* 对话框容器 */
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            animation: popIn 0.5s ease-out; /* 进场动画 */
+        }
+
+        h1 {
+            color: #d81b60;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .celebration {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            display: inline-block;
+            animation: bounce 1s infinite; /* 庆祝表情跳动 */
+        }
+
+        /* 高达图片样式 */
+        .gundam-img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* 简单的进场动画 */
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* 表情跳动动画 */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Will you be my valentine?</h1>
+        <div class="celebration">🎉🎉🎉</div>
+        
+        <div>
+            <img src="gundam.jpg" alt="Gundam" class="gundam-img">
+        </div>
+    </div>
+
+</body>
+</html>
