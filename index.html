@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        /* 1. 基础样式与低饱和粉色背景 */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fce4ec; /* 低饱和浅粉色 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* 防止No跑出滚动条 */
+        }
+
+        /* 2. 对话框容器 */
+        .card {
+            background: white;
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 400px;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #d81b60;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        /* 3. 按钮容器与样式 */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 100px; /* 为Yes变大留出空间 */
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        /* Yes 按钮样式 */
+        #yesBtn {
+            background-color: #ff80ab;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            background-color: #f50057; /* 悬停颜色加深 */
+        }
+
+        /* No 按钮样式 */
+        #noBtn {
+            background-color: #e0e0e0;
+            color: #757575;
+            position: relative; /* 用于JS控制位移 */
+            z-index: 5;
+        }
+
+        /* 4. 底部小字 */
+        .hint {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #ad1457;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Will you be my valentine?</h1>
+        
+        <div class="btn-group">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+
+        <p class="hint">"No" seems a bit shy 😈</p>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        let moveCount = 0;
+        const maxMoves = 10;
+
+        // No 按钮的“躲避”逻辑
+        noBtn.addEventListener('mouseenter', () => {
+            if (moveCount < maxMoves) {
+                // 1. 随机移动位置 (平移范围限制在周边，避免直接飞出屏幕)
+                const x = (Math.random() - 0.5) * 200; // 随机左右移动
+                const y = (Math.random() - 0.5) * 200; // 随机上下移动
+                
+                noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+                // 2. Yes 按钮变大 (字体变大3号，约相当于增加 4-6px)
+                moveCount++;
+                const currentFontSize = parseInt(window.getComputedStyle(yesBtn).fontSize);
+                const newFontSize = currentFontSize + 6; // 每次增加约3号的体感
+                yesBtn.style.fontSize = newFontSize + 'px';
+                
+                // 增加一点Padding让按钮包裹感更强
+                const currentPadding = parseInt(window.getComputedStyle(yesBtn).paddingLeft);
+                yesBtn.style.padding = `${currentPadding + 2}px ${currentPadding + 5}px`;
+            }
+        });
+
+        // 点击 Yes 的效果
+        yesBtn.addEventListener('click', () => {
+            alert('Yay! See you on Valentine\'s Day! ❤️');
+            // 这里可以跳转：window.location.href = "page2.html";
+        });
+    </script>
+</body>
+</html>
